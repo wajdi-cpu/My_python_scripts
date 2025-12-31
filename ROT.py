@@ -1,12 +1,12 @@
 import argparse
 
-def rot13(cipher_text):
+def rot13(cipher_text,val):
     plain_text = ""
     for c in cipher_text:
         if 'A' <= c <= 'Z':
-            plain_text += chr((ord(c) - ord('A') + 13) % 26 + ord('A'))
+            plain_text += chr((ord(c) - ord('A') + val) % 26 + ord('A'))
         elif 'a' <= c <= 'z':
-            plain_text += chr((ord(c) - ord('a') + 13) % 26 + ord('a'))
+            plain_text += chr((ord(c) - ord('a') + val) % 26 + ord('a'))
         else:
             plain_text += c
     return plain_text
@@ -14,10 +14,11 @@ def rot13(cipher_text):
 def main():
     try :
         parser = argparse.ArgumentParser()
-        parser.add_argument("--input", "-i",required=True, help="the input to apply rot13 on")
+        parser.add_argument("--input", "-i",required=True, help="the input to apply rot on")
+        parser.add_argument("--value", "-v",required=True, help="the value of the rotation")
         args = parser.parse_args()
         cipher_text = str(args.input)
-        plain_text = rot13(cipher_text)
+        plain_text = rot13(cipher_text, int(args.value))
         print(f'this is the flag : {plain_text}')
     except Exception :
         print("!!")
