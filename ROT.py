@@ -1,6 +1,6 @@
 import argparse
 
-def rot13(cipher_text,val):
+def rot(cipher_text,val):
     plain_text = ""
     for c in cipher_text:
         if 'A' <= c <= 'Z':
@@ -18,7 +18,7 @@ def main():
         parser.add_argument("--value", "-v",required=True, help="the value of the rotation")
         args = parser.parse_args()
         cipher_text = str(args.input)
-        plain_text = rot13(cipher_text, int(args.value))
+        plain_text = rot(cipher_text, int(args.value))
         print(f'this is the flag : {plain_text}')
     except Exception :
         print("!!")
